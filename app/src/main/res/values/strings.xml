@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Neweduapp</string>
     <string name="tw_text">Hello</string>
+    <string name="one">yeah boy</string>
+    <string name="two">Okey</string>
+    <string name="General_bottom">Жми меня</string>
 </resources>
