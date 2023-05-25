@@ -1,5 +1,6 @@
 package com.example.neweduapp
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcel
@@ -9,6 +10,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 
 
 class MainActivity() : AppCompatActivity(), Parcelable {
@@ -20,6 +22,7 @@ class MainActivity() : AppCompatActivity(), Parcelable {
         return newarray
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,35 +38,51 @@ class MainActivity() : AppCompatActivity(), Parcelable {
         var but_multi: Button = findViewById(R.id.mul_but)
         var but_dev: Button = findViewById(R.id.dev_but)
 
-        var n1: Int = 0
-        var n2: Int = 0
-        var r1: Int = 0
-
-        but_add.setOnClickListener{
-            n1 = firstarg.text.toString().toInt()
-            n2 = secondarg.text.toString().toInt()
-            r1 = n1 + n2
-            res.setText(r1.toString())
+        firstarg.setOnClickListener {
+            firstarg.text.clear()
+        }
+        secondarg.setOnClickListener {
+            secondarg.text.clear()
         }
 
+
+            //Сложение
+        but_add.setOnClickListener{
+            val nums: Array<Int> = getnum(firstarg.text,secondarg.text)
+
+            res.setText((nums[0]+nums[1]).toString())
+        }
+            // Вычитание
         but_subtr.setOnClickListener{
             val nums: Array<Int> = getnum(firstarg.text,secondarg.text)
+
             res.setText((nums[0]-nums[1]).toString())
 
         }
+            // умножение
+        but_multi.setOnClickListener {
+            val nums: Array<Int> = getnum(firstarg.text,secondarg.text)
 
-        //but_multi.setOnClickListener{
-        //    res = firstarg.text * secondarg.text
-        //}
+            res.setText((nums[0]*nums[1]).toString())
+        }
+            // деление
+        but_dev.setOnClickListener {
+            val nums: Array<Int> = getnum(firstarg.text,secondarg.text)
 
-        //but_dev.setOnClickListener{
-        //    res = firstarg.text / secondarg.text
-        //}
+            val alert = AlertDialog.Builder(this@MainActivity)
+            alert.setTitle("Остановись!")
+            alert.setMessage("Творишь какуюто дичь!")
+            alert.setPositiveButton("ПОХУЙ"){dialog,which ->
+                res.text = "division by zero"
+            }
+            alert.setNeutralButton("Нахуй"){_,_ ->
+
+            }
+            if (nums[1]==0) alert.show()
+            else res.setText((nums[0]/nums[1]).toString())
+        }
 
 
-        //var et: EditText = findViewById(R.id.editTextText1)
-        //Log.d("TAG", "edittext1.text == ${et.text}")
-        //et.setText("new text")
 
 
 
