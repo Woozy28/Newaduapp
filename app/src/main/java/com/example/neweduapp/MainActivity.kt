@@ -1,6 +1,7 @@
 package com.example.neweduapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcel
@@ -33,10 +34,16 @@ class MainActivity() : AppCompatActivity(), Parcelable {
         var res: TextView = findViewById(R.id.result)
 
         //buttons
+        var nextactiv: Button = findViewById(R.id.go_to)
         var but_add: Button = findViewById(R.id.add_but)
         var but_subtr: Button = findViewById(R.id.sub_but)
         var but_multi: Button = findViewById(R.id.mul_but)
         var but_dev: Button = findViewById(R.id.dev_but)
+
+        nextactiv.setOnClickListener{
+            val myIntent = Intent(this,MainActivity2::class.java)
+            startActivity(myIntent)
+        }
 
         firstarg.setOnClickListener {
             firstarg.text.clear()
