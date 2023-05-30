@@ -42,7 +42,9 @@ class MainActivity() : AppCompatActivity(), Parcelable {
 
         nextactiv.setOnClickListener{
             val myIntent = Intent(this,MainActivity2::class.java)
+            myIntent.putExtra("key",firstarg.text.toString())
             startActivity(myIntent)
+
         }
 
         firstarg.setOnClickListener {
